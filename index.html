@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajo Practico 1 - PowerShell</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f9;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1a365d;
+            border-bottom: 2px solid #2b6cb0;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            color: #2b6cb0;
+            margin-top: 25px;
+        }
+        .datos {
+            background-color: #edf2f7;
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .datos p {
+            margin: 4px 0;
+        }
+        pre {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #cbd5e0;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #e2e8f0;
+            color: #2d3748;
+        }
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #718096;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trabajo Práctico 1 - PowerShell</h1>
+        
+        <div class="datos">
+            <p><strong>Módulo:</strong> Programación para Seguridad Informática</p>
+            <p><strong>Docente:</strong> Lic. Carlos Pacheco</p>
+            <p><strong>Tema:</strong> Comandos básicos de auditoría con PowerShell y CMD</p>
+        </div>
+
+        <h2>1. Consignas</h2>
+        <p>Desarrollar un script en PowerShell que obtenga:</p>
+        <ol>
+            <li>Versión de PowerShell.</li>
+            <li>Configuración de permisividad (Execution Policy).</li>
+            <li>Edición del sistema operativo.</li>
+            <li>Información completa del equipo mediante el comando adecuado del símbolo del sistema (CMD).</li>
+        </ol>
+
+        <h2>2. Script Implementado (info_sistema.ps1)</h2>
+        <pre><code># Trabajo Practico 1 - PowerShell
+# Modulo: Programacion para Seguridad Informatica
+# Docente: Lic. Carlos Pacheco
+
+# 1. Version de PowerShell
+Write-Host "--- 1. VERSION DE POWERSHELL ---"
+$PSVersionTable.PSVersion
+
+# 2. Configuracion de permisividad (Execution Policy)
+Write-Host "`n--- 2. PERMISIVIDAD (EXECUTION POLICY) ---"
+Get-ExecutionPolicy -List
+
+# 3. Informacion de la edicion del Sistema Operativo
+Write-Host "`n--- 3. EDICION DEL SISTEMA OPERATIVO ---"
+Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, OSArchitecture, BuildNumber
+
+# 4. Informacion completa de la PC (comando del simbolo del sistema)
+Write-Host "`n--- 4. INFORMACION COMPLETA DE LA PC (CMD) ---"
+systeminfo</code></pre>
+
+        <h2>3. Comandos Utilizados y Justificación</h2>
+        <table>
+            <tr>
+                <th>Ítem</th>
+                <th>Comando</th>
+                <th>Descripción</th>
+            </tr>
+            <tr>
+                <td>1. Versión</td>
+                <td><code>$PSVersionTable.PSVersion</code></td>
+                <td>Variable interna que retorna la versión del motor de PowerShell instalada.</td>
+            </tr>
+            <tr>
+                <td>2. Permisividad</td>
+                <td><code>Get-ExecutionPolicy -List</code></td>
+                <td>Muestra las directivas de ejecución aplicadas por cada alcance (Machine, User, Process, etc.).</td>
+            </tr>
+            <tr>
+                <td>3. Sistema Operativo</td>
+                <td><code>Get-CimInstance Win32_OperatingSystem</code></td>
+                <td>Consulta WMI/CIM nativa para ver nombre de la edición, compilación y arquitectura.</td>
+            </tr>
+            <tr>
+                <td>4. Info PC</td>
+                <td><code>systeminfo</code></td>
+                <td>Comando del símbolo del sistema que recopila hardware, BIOS, memoria RAM y parches.</td>
+            </tr>
+        </table>
+
+        <footer>
+            <p>Repositorio alojado en GitHub - Publicado mediante GitHub Pages</p>
+        </footer>
+    </div>
+</body>
+</html>
